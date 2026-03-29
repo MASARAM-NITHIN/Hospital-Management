@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Book Appointment</title>
+<link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+<h2>📅 Book Appointment</h2>
+
+<form th:action="@{/appointments/add}" method="post">
+
+    <select name="patient.patientId" required>
+        <option disabled selected>Select Patient</option>
+        <option th:each="p : ${patients}" 
+                th:value="${p.patientId}" 
+                th:text="${p.patientName}">
+        </option>
+    </select>
+
+ 
+    <select name="doctor.doctorId" required>
+        <option disabled selected>Select Doctor</option>
+        <option th:each="d : ${doctors}" 
+                th:value="${d.doctorId}" 
+                th:text="${d.doctorName}">
+        </option>
+    </select>
+
+    <input type="date" name="date" required>
+
+    <button type="submit">Book Appointment</button>
+    
+    <a th:href="@{/}" class="btn-back">Back</a>
+
+</form>
+
+<br><br>
+
+<table border="1">
+<tr>
+    <th>Patient</th>
+    <th>Doctor</th>
+    <th>Date</th>
+    <th>Action</th>
+</tr>
+
+<tr th:each="a : ${appointments}">
+    <td th:text="${a.patient != null ? a.patient.patientName : 'N/A'}"></td>
+    <td th:text="${a.doctor != null ? a.doctor.doctorName : 'N/A'}"></td>
+    <td th:text="${a.date}"></td>
+    <td>
+        <a th:href="@{/appointments/delete(id=${a.aId})}" class="delete-link">Delete</a>
+    </td>
+</tr>
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hospital Dashboard</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<h1>🏥 Hospital Management Dashboard</h1>
+
+<nav>
+    <a href="/">Home</a>
+    <a href="/patients">Patients</a>
+    <a href="/doctors">Doctors</a>
+    <a href="/appointments">Appointments</a>
+</nav>
+
+<div class="cards">
+    <div class="card">
+        👤 Patients <br>
+        <b th:text="${patientCount}"></b>
+    </div>
+
+    <div class="card">
+        👨‍⚕️ Doctors <br>
+        <b th:text="${doctorCount}"></b>
+    </div>
+
+    <div class="card">
+        📅 Appointments <br>
+        <b th:text="${appointmentCount}"></b>
+    </div>
+</div>
+
+</body>
+</html>
